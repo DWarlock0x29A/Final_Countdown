@@ -14,12 +14,19 @@ timeend= new Date();
 // Для задания даты с точностью до времени укажите дату в формате:
 timeend= new Date(2019, 04, 09, 13, 30);
 function time() {
+        var days;
 	today = new Date();
 	today = Math.floor((timeend-today)/1000);
 	tsec=today%60; today=Math.floor(today/60); if(tsec<10)tsec='0'+tsec;
 	tmin=today%60; today=Math.floor(today/60); if(tmin<10)tmin='0'+tmin;
 	thour=today%24; today=Math.floor(today/24);
-	timestr=today +" дней "+ thour+" часов "+tmin+" минут "+tsec+" секунд";//timestr=today +" : "+ thour+" : "+tmin+" : "+tsec+" секунд";
+        
+        if (today>5) {days="дней"};
+        if (today<5) {days="дня"};
+        if (today==1) {days="день"};
+        if (today==0) {days="дней"};
+        if (today==5) {days="дней"};
+	timestr=today +" "+days+" "+ thour+" часов "+tmin+" минут "+tsec+" секунд";//timestr=today +" : "+ thour+" : "+tmin+" : "+tsec+" секунд";
 	document.getElementById('t').innerHTML=timestr;
 	window.setTimeout("time()",1000);
 }
@@ -31,3 +38,4 @@ function time() {
 
 </FONT>
 </CENTER></BODY></HTML>
+
